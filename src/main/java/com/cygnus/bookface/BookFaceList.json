@@ -1,0 +1,17 @@
+[
+    {
+        "title":"Harry Potter",
+        "author":"JK Rowling",
+        "isbn":1998
+    },
+    {
+        "title":"To Kill a Mockingbird",
+        "author":"Harper Lee",
+        "isbn":1960
+    },
+    {
+        "title":"Lord of the Rings",
+        "author":"JRR Tolkien",
+        "isbn":1954
+    }
+]
