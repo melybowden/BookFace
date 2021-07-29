@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 // import org.springframework.security.config.web.servlet.headers.HeadersSecurityMarker;
 // import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,6 +23,7 @@ public class BookFaceController {
     @Autowired
     BookFaceRepository repository;
 
+    @CrossOrigin(origins = "https://bookface-df88d.web.app/")
     @GetMapping("/")
     public String getRoot() {
         return "Hello world";
@@ -37,22 +39,26 @@ public class BookFaceController {
         return booksAdded;
     }
 
+    @CrossOrigin(origins = "https://bookface-df88d.web.app/")
     @PostMapping("/bookface")
     public String receiveBook(@RequestBody BookFaceClass bookface) {
         repository.save(bookface);
         return "Book title: " + bookface.getTitle();
     }
 
+    @CrossOrigin(origins = "https://bookface-df88d.web.app/")
     @GetMapping("/bookface")
     public List<BookFaceClass> getAllBooks() {
         return repository.findAll();
     }
 
+    @CrossOrigin(origins = "https://bookface-df88d.web.app/")
     @GetMapping("/bookface/{id}")
     public BookFaceClass getBookByID(@PathVariable Long id) {
         return repository.findById(id).orElse(null);
     }
 
+    @CrossOrigin(origins = "https://bookface-df88d.web.app/")
     @PutMapping("/bookface/{id}") 
     public BookFaceClass updateBook(@PathVariable Long id, @RequestBody BookFaceClass book) {
         if (repository.existsById(id)) {
@@ -63,6 +69,7 @@ public class BookFaceController {
         }
     }
 
+    @CrossOrigin(origins = "https://bookface-df88d.web.app/")
     @DeleteMapping("/bookface/{id}")
     public void deleteBook(@PathVariable Long id) {
         if (repository.existsById(id)) {
