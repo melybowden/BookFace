@@ -23,6 +23,7 @@ public class WebConfiguration extends WebSecurityConfigurerAdapter {
             .and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/bookface").permitAll() // Everyone can READ and LIST from /book
+                .antMatchers(HttpMethod.GET, "/bookface/user").permitAll()
                 .antMatchers(HttpMethod.POST, "/users/register").permitAll()
                 .antMatchers(HttpMethod.POST, "/users/login").permitAll()
                 .antMatchers(HttpMethod.POST, "/users/logout").permitAll()
