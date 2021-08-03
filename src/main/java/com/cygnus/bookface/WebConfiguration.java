@@ -26,6 +26,9 @@ public class WebConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/users/register").permitAll()
                 .antMatchers(HttpMethod.POST, "/users/login").permitAll()
                 .antMatchers(HttpMethod.POST, "/users/logout").permitAll()
+                .antMatchers(HttpMethod.OPTIONS, "/users/register").permitAll()
+                .antMatchers(HttpMethod.OPTIONS, "/users/login").permitAll()
+                .antMatchers(HttpMethod.OPTIONS, "/users/logout").permitAll()
                 .anyRequest().authenticated() // All other requests must be authenticated
             .and()
                 .csrf().disable(); // Unsafe for PROD
