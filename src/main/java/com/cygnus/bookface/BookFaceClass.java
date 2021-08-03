@@ -1,19 +1,27 @@
 package com.cygnus.bookface;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "BookFaceClass")
 public class BookFaceClass {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
 
+    @Column(name = "title")
     private String title;
+    @Column(name = "author")
     private String author;
+    @Column(name = "isbn")
     private Long isbn;
+    @Column(name = "imageURL")
     private String imageURL;
 
     public BookFaceClass() {
