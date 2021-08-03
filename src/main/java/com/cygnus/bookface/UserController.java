@@ -41,9 +41,10 @@ public class UserController {
 
         for(UserClass u : allusers) {
             if (u.equals(user)) {
-                user.setLoggedin(true);
-                userRepository.save(user);
-                return Pair.of("User logged in", user);
+                UserClass newUserLoggedIn = new UserClass(user, u.getID());
+                newUserLoggedIn.setLoggedin(true);
+                userRepository.save(newUserLoggedIn);
+                return Pair.of("User logged in", newUserLoggedIn);
             }
 
         }
@@ -56,9 +57,10 @@ public class UserController {
 
         for(UserClass u : allusers) {
             if (u.equals(user)) {
-                user.setLoggedin(false);
-                userRepository.save(user);
-                return Pair.of("User logged out", user);
+                UserClass newUserLoggedOut = new UserClass(user, u.getID());
+                newUserLoggedOut.setLoggedin(false);
+                userRepository.save(newUserLoggedOut);
+                return Pair.of("User logged out", newUserLoggedOut);
             }
 
         }
