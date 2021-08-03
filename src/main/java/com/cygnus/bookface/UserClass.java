@@ -23,19 +23,21 @@ public class UserClass {
     private String password;
     @Column(name = "loggedin")
     private boolean loggedin;
+    @Column(name = "displayname")
+    private String displayname;
 
     public UserClass(){
         this.username = null;
         this.password=null;
         this.loggedin=false;
-
-
+        this.displayname=null;
     }
 
-    public UserClass(String username, String password){
+    public UserClass(String username, String password, String displayname){
         this.username = username;
         this.password = password;
         this.loggedin = false;
+        this.displayname = displayname;
     }
 
     public UserClass(UserClass other, Long id){
@@ -43,6 +45,7 @@ public class UserClass {
         this.password = other.getPassword();
         this.id = id;
         this.loggedin = false;
+        this.displayname = other.getDisplayname();
     }
 
     public Long getID(){
@@ -73,9 +76,17 @@ public class UserClass {
         this.loggedin = loggedin;
     }
 
+    public String getDisplayname(){
+        return this.displayname;
+    }
+
+    public void setDisplayname(String displayname){
+        this.displayname = displayname;
+    }
+
     @Override
     public int hashCode(){
-        return Objects.hash(id, username, password, loggedin);
+        return Objects.hash(id, username, password, loggedin, displayname);
     }
 
     @Override
@@ -87,7 +98,7 @@ public class UserClass {
             return false;
         }
         UserClass u = (UserClass) o;
-        return Objects.equals(username, u.username)&&Objects.equals(password, u.password);
+        return Objects.equals(username, u.username)&&Objects.equals(password, u.password)&&Objects.equals(displayname, u.displayname);
 
     }
 
