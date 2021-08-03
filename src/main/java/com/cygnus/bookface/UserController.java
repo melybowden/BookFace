@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.util.Pair;
 
 @RestController
 public class UserController {
@@ -15,44 +16,44 @@ public class UserController {
     UserRepository userRepository;
 
     @PostMapping("/users/register")
-    public String registerUser(@RequestBody UserClass user) {
+    public Pair<String, UserClass> registerUser(@RequestBody UserClass user) {
         List<UserClass> allusers = userRepository.findAll();
         for (UserClass u: allusers) {
             if (u.equals(user)) {
-                return "User already exists";
+                return Pair.of("User already exists", user);
             }
         }
         userRepository.save(user);
-        return "User successfully created";
+        return Pair.of("User succesfully created", user);
     }
 
     @PostMapping("/users/login")
-    public String loginUser(@RequestBody UserClass user) {
+    public Pair<String, UserClass> loginUser(@RequestBody UserClass user) {
         List<UserClass> allusers = userRepository.findAll();
 
         for(UserClass u : allusers) {
             if (u.equals(user)) {
                 user.setLoggedin(true);
                 userRepository.save(user);
-                return "User logged in";
+                return Pair.of("User logged in", user);
             }
 
         }
-        return "User does not exist";
+        return Pair.of("User does not exist", user);
     }
 
     @PostMapping("/users/logout")
-    public String logoutUser(@RequestBody UserClass user) {
+    public Pair<String, UserClass> logoutUser(@RequestBody UserClass user) {
         List<UserClass> allusers = userRepository.findAll();
 
         for(UserClass u : allusers) {
             if (u.equals(user)) {
                 user.setLoggedin(false);
                 userRepository.save(user);
-                return "User logged out";
+                return Pair.of("User logged out", user);
             }
 
         }
-        return "User does not exist";
+        return Pair.of("User does not exist", user);
     }
 }
